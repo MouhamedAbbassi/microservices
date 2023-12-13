@@ -52,6 +52,14 @@ services:
       - eureka.client.serviceUrl.defaultZone=http://discovery:8761/eureka/
 
 
+  livraison-node-ms:
+    build: ./Livraison-Node-MS
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=discovery
+    ports:
+      - "4001:4001"
+    image: "livraison-service"
+
   keycloak:
     image: quay.io/keycloak/keycloak:15.0.1
     ports:
