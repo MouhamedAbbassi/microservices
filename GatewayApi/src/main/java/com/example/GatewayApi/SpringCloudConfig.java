@@ -18,6 +18,7 @@ public class SpringCloudConfig {
 
                 .route("candidates", r -> r.path("/candidats/**").uri("http://candidate:8082"))
                 .route("resources", r -> r.path("/resources/**").uri("http://resource:8083"))
+                .route("seances", r->r.path("/seances/**").uri("http://seances:8081/"))
                 .build();
 
 
