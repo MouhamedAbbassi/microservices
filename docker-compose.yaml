@@ -6,6 +6,11 @@ services:
       - "8761:8761"
     image: "discovery:v1"
 
+  front-ms:
+    build: ./AngularMicroService-main
+    image: ms-frontend:v1
+    ports:
+      - 4200:4200
 
 
   candidate:
@@ -28,8 +33,6 @@ services:
     depends_on:
       - mysqldb
 
-
-
   mysqldb:
     container_name: mysqldb
     image: mysql:8
@@ -40,6 +43,26 @@ services:
     environment:
       MYSQL_DATABASE: resource
       MYSQL_ROOT_PASSWORD: root
+
+  cour:
+    build: ./cour
+    ports:
+      - "8086:8086"
+    image: "cours:v1"
+    environment:
+      - eureka.client.serviceUrl.defaultZone=http://discovery:8761/eureka/
+    depends_on:
+      - mysqldb
+
+  reclamation:
+    build: ./Reclamations
+    ports:
+      - "8088:8088"
+    image: "reclamations:v1"
+    environment:
+      - eureka.client.serviceUrl.defaultZone=http://discovery:8761/eureka/
+    depends_on:
+      - mysqldb
 
 
   gateway:
@@ -52,14 +75,36 @@ services:
       - eureka.client.serviceUrl.defaultZone=http://discovery:8761/eureka/
 
 
-
   seances:
-    build: ./Node-MS
+    build: ./Node-Ms
     environment:
       - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=discovery
     ports:
       - "8081:8081"
     image: "seances:v1"
 
+
+  plannings:
+    build: ./plannings
+    ports:
+      - "8087:8087"
+    image: "plannings:v1"
+    environment:
+      - eureka.client.serviceUrl.defaultZone=http://discovery:8761/eureka/
+    depends_on:
+      - h2
+
+
+  h2:
+    container_name: 'h2'
+    hostname: 'h2'
+    image: 1000kit/h2
+    ports:
+      - "8181:8181"
+      - "1521:1521"
+    volumes:
+      - h2-data:/opt/h2-data
+volumes:
+  h2-data:
 
 

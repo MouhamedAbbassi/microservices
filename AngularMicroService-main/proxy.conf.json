@@ -1,0 +1,22 @@
+{
+    "/reclamations": {
+      "target": "http://localhost:8085",
+      "secure": false
+ },
+ "/resources": {
+    "target": "http://localhost:8085",
+    "secure": false
+},
+"/cours": {
+    "target": "http://localhost:8085",
+    "secure": false
+},
+"/planification": {
+    "target": "http://localhost:8085",
+    "secure": false
+},
+"/seances": {
+  "target": "http://localhost:8085",
+  "secure": false
+}
+}

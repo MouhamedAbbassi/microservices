@@ -15,7 +15,7 @@ public interface ResourceService {
 
 
 
-    void deleteResourceById(long id);
+    void deleteResource(long id);
 
 
 

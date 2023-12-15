@@ -1,0 +1,30 @@
+<!-- university-form.component.html -->
+
+<div class="max-w-md mx-auto bg-white shadow-lg rounded px-8 pt-6 pb-8 mb-4 w-full max-w-md flex justify-center items-center">
+    <form [formGroup]="reclamationForm" (ngSubmit)="onSubmit()" class="grid md:grid-cols-1 md:gap-3" style="max-width: 50%;">
+  
+      <div class="relative z-0 w-full mb-5 group">
+        <h1 class="font-medium">Ajouter Reclamation</h1>
+      </div>
+
+      <div class="relative z-0 w-full mb-5 group">
+        <label for="floating_sujet" class="block text-black font-medium">Sujet</label>
+        <input type="text" formControlName="sujet" id="sujet" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:border-blue-500 dark:text-black dark:border-gray-600 dark:focus:border-blue-500 dark:bg-gray-800" placeholder="Saisissez le nom du foyer" required />
+        <div *ngIf="reclamationForm.get('sujet')?.errors" class="text-red-500 text-sm mt-1">
+          <div *ngIf="reclamationForm.get('sujet')?.hasError('required')">Le sujet.</div>
+          <div *ngIf="reclamationForm.get('sujet')?.hasError('maxLength')">Le sujet ne doit pas dépasser 50 caractères.</div>
+          <div *ngIf="reclamationForm.get('sujet')?.hasError('pattern')">Le sujet ne doit contenir que des lettres et des espaces.</div>
+        </div>
+      </div>
+      <div class="relative z-0 w-full mb-5 group">
+        <label for="floating_description" class="block text-black font-medium">Description</label>
+        <input type="text" formControlName="description" id="description" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:border-blue-500 dark:text-black dark:border-gray-600 dark:focus:border-blue-500 dark:bg-gray-800" placeholder="Saisissez le nom du foyer" required />
+        <div *ngIf="reclamationForm.get('description')?.errors" class="text-red-500 text-sm mt-1">
+          <div *ngIf="reclamationForm.get('description')?.hasError('required')">La description est obligatoire.</div>
+        </div>
+      </div>
+  
+      <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Ajouter Reclamation</button>
+    </form>
+  </div>
+  
