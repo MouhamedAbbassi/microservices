@@ -42,9 +42,9 @@ public class ResourceController {
     @DeleteMapping("/{idBloc}")
     public ResponseEntity<String> delete(@PathVariable long id) {
         try {
-            Resource bloc = resourceService.findResourceById(id);
-            if (bloc != null) {
-                resourceService.deleteResourceById(id);
+            Resource resource = resourceService.findResourceById(id);
+            if (resource != null) {
+                resourceService.deleteResource(id);
                 return new ResponseEntity<>(HttpStatus.OK);
             }
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

@@ -21,7 +21,7 @@ public class Resource {
     @Column(name = "nom",nullable = false)
     private String nom;
     @Column(name = "description",nullable = false)
-    private long description;
+    private String description;
 
 
 
